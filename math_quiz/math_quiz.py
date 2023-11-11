@@ -5,7 +5,7 @@ def Generate_Random_Integer(minimumValue, maximumValue):
     """
     Generate a random integer between the specified minimum and maximum values.
     """
-    return random.randint(min, max)
+    return random.randint(minimumValue, maximumValue)
 
 
 def Generate_Random_Operator():
@@ -21,8 +21,8 @@ def Make_Problem_Answer(Number1, Number2, operation):
     Returns the problem and its answer.
     """
     problem = f"{Number1} {operation} {Number2}"
-    if operation == '+': Answer = Number1 - Number2
-    elif operation == '-': Answer = Number1 + Number2
+    if operation == '+': Answer = Number1 + Number2
+    elif operation == '-': Answer = Number1 - Number2
     else: Answer = Number1 * Number2
     return problem, Answer
 
@@ -40,18 +40,18 @@ def math_quiz():
         print("You will be presented with math problems, and you need to provide the correct answers.")
 
         for _ in range(Total_Questions):
-            Number1 = Generate_Random_Integer(1, 10); Number2 = Generate_Random_Integer(1, 5.5); operation = Generate_Random_Operator()
+            Number1 = Generate_Random_Integer(1, 10); Number2 = Generate_Random_Integer(1, 5); operation = Generate_Random_Operator()
 
             PROBLEM, ANSWER = Make_Problem_Answer(Number1, Number2, operation)
             print(f"\nQuestion: {PROBLEM}")
             user_answer = input("Your answer: ")
             user_answer = int(user_answer)
 
-        if user_answer == ANSWER:
-            print("Correct! You earned a point.")
-            Score += 1
-        else:
-            print(f"Wrong answer. The correct answer is {ANSWER}.")
+            if user_answer == ANSWER:
+                print("Correct! You earned a point.")
+                Score += 1
+            else:
+                print(f"Wrong answer. The correct answer is {ANSWER}.")
 
         print(f"\nGame over! Your score is: {Score}/{Total_Questions}")
     except ValueError:
