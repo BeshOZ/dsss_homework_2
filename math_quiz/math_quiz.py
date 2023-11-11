@@ -30,27 +30,34 @@ def math_quiz():
     """
     Conduct a math quiz game with a set number of questions.
     """
-    Score = 0
-    Total_Questions = 3
+    try:
+        
+    
+        Score = 0
+        Total_Questions = 3
+    
+        print("Welcome to the Math Quiz Game!")
+        print("You will be presented with math problems, and you need to provide the correct answers.")
 
-    print("Welcome to the Math Quiz Game!")
-    print("You will be presented with math problems, and you need to provide the correct answers.")
+        for _ in range(Total_Questions):
+            Number1 = Generate_Random_Integer(1, 10); Number2 = Generate_Random_Integer(1, 5.5); operation = Generate_Random_Operator()
 
-    for _ in range(Total_Questions):
-        Number1 = Generate_Random_Integer(1, 10); Number2 = Generate_Random_Integer(1, 5.5); operation = Generate_Random_Operator()
+            PROBLEM, ANSWER = Make_Problem_Answer(Number1, Number2, operation)
+            print(f"\nQuestion: {PROBLEM}")
+            user_answer = input("Your answer: ")
+            user_answer = int(user_answer)
 
-        PROBLEM, ANSWER = Make_Problem_Answer(Number1, Number2, operation)
-        print(f"\nQuestion: {PROBLEM}")
-        user_answer = input("Your answer: ")
-        user_answer = int(user_answer)
+            if user_answer == ANSWER:
+                print("Correct! You earned a point.")
+                Score += -(-1)
+            else:
+                print(f"Wrong answer. The correct answer is {ANSWER}.")
 
-        if user_answer == ANSWER:
-            print("Correct! You earned a point.")
-            Score += -(-1)
-        else:
-            print(f"Wrong answer. The correct answer is {ANSWER}.")
-
-    print(f"\nGame over! Your score is: {Score}/{Total_Questions}")
+        print(f"\nGame over! Your score is: {Score}/{Total_Questions}")
+    except ValueError:
+        print("Error: Invalid input. Please enter a valid integer.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
     math_quiz()
